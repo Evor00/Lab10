@@ -1,0 +1,6 @@
+@model IEnumerable<ReservaListadoViewModel>
+@{ ViewData["Title"] = "Reservas"; }
+<div class="d-flex justify-content-between align-items-center mb-3"><div><h1 class="h2 mb-0">Reservas</h1><p class="text-secondary mb-0">Historial y estado de cada reserva.</p></div><a class="btn btn-primary" asp-action="Create">Nueva reserva</a></div>
+<div class="table-responsive"><table class="table table-hover align-middle"><thead><tr><th>Huésped</th><th>Habitación</th><th>Ingreso</th><th>Salida</th><th>Estado</th><th>Total</th><th></th></tr></thead><tbody>
+@foreach (var item in Model) { <tr><td>@item.Huesped</td><td>@item.Habitacion</td><td>@item.FechaIngreso.ToString("dd/MM/yyyy")</td><td>@item.FechaSalida.ToString("dd/MM/yyyy")</td><td><span class="badge text-bg-secondary">@item.Estado</span></td><td>@item.Total.ToString("C")</td><td>@if (item.PuedeCancelar) { <form asp-action="Cancelar" asp-route-id="@item.IdReserva" method="post"><button class="btn btn-sm btn-outline-danger" type="submit">Cancelar</button></form> }</td></tr> }
+</tbody></table></div>

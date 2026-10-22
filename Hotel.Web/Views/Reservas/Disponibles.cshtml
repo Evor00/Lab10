@@ -1,0 +1,16 @@
+@model IEnumerable<DisponibilidadHabitacionViewModel>
+@{ ViewData["Title"] = "Disponibilidad"; }
+<h1 class="h2">Consultar disponibilidad</h1>
+<form method="get" class="row g-3 align-items-end my-3">
+    <div class="col-md-3"><label class="form-label">Ingreso</label><input class="form-control" name="ingreso" type="date" value="@ViewBag.Ingreso" required /></div>
+    <div class="col-md-3"><label class="form-label">Salida</label><input class="form-control" name="salida" type="date" value="@ViewBag.Salida" required /></div>
+    <div class="col-md-auto"><button class="btn btn-primary" type="submit">Buscar</button></div>
+</form>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+@if (ViewBag.Ingreso is not null && ViewBag.Salida is not null)
+{
+    <div class="table-responsive"><table class="table table-hover align-middle"><thead><tr><th>Habitación</th><th>Tipo</th><th>Precio/noche</th><th>Noches</th><th>Total estimado</th></tr></thead><tbody>
+    @foreach (var item in Model) { <tr><td class="fw-semibold">@item.Numero</td><td>@item.Tipo</td><td>@item.PrecioNoche.ToString("C")</td><td>@item.Noches</td><td>@item.TotalEstimado.ToString("C")</td></tr> }
+    </tbody></table></div>
+    @if (!Model.Any()) { <p class="text-secondary">No hay habitaciones disponibles para esas fechas.</p> }
+}

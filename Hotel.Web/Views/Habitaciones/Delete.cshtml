@@ -1,0 +1,5 @@
+@model Habitacion
+@{ ViewData["Title"] = "Desactivar habitación"; }
+<h1 class="h2">Desactivar habitación</h1>
+<p>¿Seguro que deseas desactivar la habitación <strong>@Model.Numero</strong>? No se eliminará físicamente de la base de datos.</p>
+<form asp-action="Delete"><input type="hidden" asp-for="IdHabitacion" /><button class="btn btn-danger" type="submit">Sí, desactivar</button> <a class="btn btn-link" asp-action="Index">Cancelar</a></form>

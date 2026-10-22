@@ -1,0 +1,11 @@
+@model Habitacion
+@{ ViewData["Title"] = "Editar habitación"; }
+<h1 class="h2">Editar habitación</h1>
+<form asp-action="Edit" class="col-md-6 mt-3">
+    <input type="hidden" asp-for="IdHabitacion" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3"><label asp-for="Numero" class="form-label">Número</label><input asp-for="Numero" class="form-control" /><span asp-validation-for="Numero" class="text-danger"></span></div>
+    <div class="mb-3"><label asp-for="IdTipoHabitacion" class="form-label">Tipo</label><select asp-for="IdTipoHabitacion" class="form-select" asp-items="@(ViewData["Tipos"] as SelectList)"></select><span asp-validation-for="IdTipoHabitacion" class="text-danger"></span></div>
+    <button class="btn btn-primary" type="submit">Guardar cambios</button> <a class="btn btn-link" asp-action="Index">Volver</a>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

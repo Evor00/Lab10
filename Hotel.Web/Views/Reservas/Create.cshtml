@@ -1,0 +1,12 @@
+@model Reserva
+@{ ViewData["Title"] = "Nueva reserva"; }
+<h1 class="h2">Nueva reserva</h1>
+<form asp-action="Create" class="col-lg-7 mt-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3"><label asp-for="IdHuesped" class="form-label">Huésped</label><select asp-for="IdHuesped" class="form-select" asp-items="@(ViewData["Huespedes"] as SelectList)"><option value="">Seleccione un huésped</option></select><span asp-validation-for="IdHuesped" class="text-danger"></span></div>
+    <div class="mb-3"><label asp-for="IdHabitacion" class="form-label">Habitación</label><select asp-for="IdHabitacion" class="form-select" asp-items="@(ViewData["Habitaciones"] as SelectList)"><option value="">Seleccione una habitación</option></select><span asp-validation-for="IdHabitacion" class="text-danger"></span></div>
+    <div class="row"><div class="col-md-6 mb-3"><label asp-for="FechaIngreso" class="form-label">Fecha de ingreso</label><input asp-for="FechaIngreso" type="date" class="form-control" /><span asp-validation-for="FechaIngreso" class="text-danger"></span></div><div class="col-md-6 mb-3"><label asp-for="FechaSalida" class="form-label">Fecha de salida</label><input asp-for="FechaSalida" type="date" class="form-control" /><span asp-validation-for="FechaSalida" class="text-danger"></span></div></div>
+    <div class="mb-3"><label asp-for="Observaciones" class="form-label">Observaciones</label><textarea asp-for="Observaciones" class="form-control" rows="3" maxlength="200"></textarea><span asp-validation-for="Observaciones" class="text-danger"></span></div>
+    <button class="btn btn-primary" type="submit">Registrar reserva</button> <a class="btn btn-link" asp-action="Index">Volver</a>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
